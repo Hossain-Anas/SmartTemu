@@ -6,8 +6,8 @@ SmartTemu is a MERN e-commerce platform with AI search, recommendations, chatbot
 
 1. **Clone the repo**
    ```bash
-   git clone <repo-url>
-   cd <project-folder>
+   git clone https://github.com/Hossain-Anas/SmartTemu.git
+   cd SmartTemu
    ```
 
 2. **Match Node.js** (requires nvm)
