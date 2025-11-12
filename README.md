@@ -32,7 +32,7 @@ SmartTemu is a MERN e-commerce platform with AI search, recommendations, chatbot
 5. **Run the servers** (two terminals)
    ```bash
    cd backend  && npm run dev
-   cd frontend && npm start
+   cd frontend && npm run dev
    ```
 
 ## Need-to-Know

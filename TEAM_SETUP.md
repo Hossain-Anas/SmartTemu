@@ -79,7 +79,7 @@ Use `npm ci` whenever `package-lock.json` changes.
 cd backend  && npm run dev
 
 # Terminal B
-cd frontend && npm start
+cd frontend && npm run dev
 ```
 
 ## Troubleshooting cheatsheet

@@ -18,7 +18,7 @@ React UI for SmartTemu.
 
 3. Start the dev server
    ```bash
-   npm start
+   npm run dev
    ```
 
 ## Structure Overview
@@ -34,7 +34,7 @@ React UI for SmartTemu.
 
 ## Dev Notes
 
-- Match the backend URL via `REACT_APP_API_URL` in `.env`.
+- Match the backend URL via `VITE_API_URL` in `.env`.
 - Keep `package-lock.json` committed.
 - Update `.env.example` when new variables are needed.
 
