@@ -11,8 +11,12 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.1.17",
+    "daisyui": "^5.5.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^7.9.5",
+    "tailwindcss": "^4.1.17"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
@@ -22,4 +26,3 @@
     "vitest": "^1.0.4"
   }
 }
-
