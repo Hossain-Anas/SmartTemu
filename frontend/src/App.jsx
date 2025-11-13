@@ -3,7 +3,7 @@ import './App.css'
 function App() {
   return (
     <div className="App">
-      <h1>SmartTemu</h1>
+      <h1 className='text-xl'>SmartTemu</h1>
       <p>AI-Powered E-Commerce Platform</p>
     </div>
   )
