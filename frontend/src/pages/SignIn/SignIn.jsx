@@ -1,22 +1,20 @@
-import Lottie from "lottie-react";
+import Lottie from 'lottie-react';
+import LottieSignIn from '../../assets/lotties/SignIn.json'
+import { use, useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext/AuthContext';
 
-import lottieRegister from "../../assets/lotties/Register.json";
-import { use, useContext } from "react";
-import { AuthContext } from "../../context/AuthContext/AuthContext";
+const SignIn = () => {
+    const {signIn} = useContext(AuthContext)
 
-const Register = () => {
-
-    const {createUser} = useContext(AuthContext)
-
-    const handleRegister = (e) => {
+    const handleSignIn = (e) => {
         e.preventDefault()
         const form = e.target
         const email = form.email.value
         const password = form.password.value
 
         console.log(email, password)
-        // create a user
-        createUser(email, password)
+        // sign in user
+        signIn(email, password)
         .then((res) => {
             console.log(res.user)
         }).catch((error) => {
@@ -25,19 +23,19 @@ const Register = () => {
         })
     }
 
-  return (
-    <div className="hero bg-base-200 min-h-screen">
+    return (
+            <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <Lottie
           style={{ width: "200px" }}
-          animationData={lottieRegister}
+          animationData={LottieSignIn}
         ></Lottie>
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
           <div className="card-body">
             <div className="text-center lg:text-left">
-              <h1 className="text-5xl font-bold">Register Now!</h1>
+              <h1 className="text-5xl font-bold">Sign In!</h1>
             </div>
-            <form onSubmit={handleRegister}>
+            <form onSubmit={handleSignIn}>
               <fieldset className="fieldset">
                 <label className="label">Email</label>
                 <input
@@ -56,14 +54,14 @@ const Register = () => {
                 <div>
                   <a className="link link-hover">Forgot password?</a>
                 </div>
-                <button className="btn btn-neutral mt-4">Register</button>
+                <button className="btn btn-neutral mt-4">Sign In</button>
               </fieldset>
             </form>
           </div>
         </div>
       </div>
     </div>
-  );
+    );
 };
 
-export default Register;
+export default SignIn;
