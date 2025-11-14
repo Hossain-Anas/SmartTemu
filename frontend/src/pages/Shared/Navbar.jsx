@@ -58,7 +58,7 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end text-sm">
-        {user? <p>{user.email}</p> : <p>No user logged in!</p>}
+        {user? <p>User: {user.email}</p> : <p>No user logged in!</p>}
         <Link to="/profile">
           <img
             className="ml-8 rounded-full max-w-1/3"
