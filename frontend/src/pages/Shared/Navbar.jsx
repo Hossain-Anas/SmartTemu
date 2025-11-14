@@ -1,19 +1,20 @@
 import React, { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext/AuthContext";
+import imgBlankPfp from '../../assets/images/blank_pfp.webp'
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
 
   const handleSignOut = () => {
-        signOutUser()
-        .then(() => {
-            console.log('Signed Out the user')
-        })
-        .catch((error) => {
-            console.log(error.message)
-        })
-  }
+    signOutUser()
+      .then(() => {
+        console.log("Signed Out the user");
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
 
   const links = (
     <>
@@ -51,14 +52,24 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">SmartTemu</a>
+        <NavLink to="/" className="btn btn-ghost text-xl">SmartTemu</NavLink>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
+        {user? <p>{user.email}</p> : <p>User didn't login</p>}
+        <Link to="/profile">
+          <img
+            className="ml-2 rounded-full max-w-1/4"
+            src={user ? user.photoURL : imgBlankPfp}
+            alt=""
+          />
+        </Link>
         {user ? (
-          <button onClick={handleSignOut} className="btn">Sign Out</button>
+          <button onClick={handleSignOut} className="btn">
+            Sign Out
+          </button>
         ) : (
           <>
             <NavLink to="/register" className="btn">
