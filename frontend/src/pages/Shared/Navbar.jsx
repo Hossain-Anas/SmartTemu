@@ -57,12 +57,12 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
-      <div className="navbar-end">
-        {user? <p>{user.email}</p> : <p>User didn't login</p>}
+      <div className="navbar-end text-sm">
+        {user? <p>{user.email}</p> : <p>No user logged in!</p>}
         <Link to="/profile">
           <img
-            className="ml-2 rounded-full max-w-1/4"
-            src={user ? user.photoURL : imgBlankPfp}
+            className="ml-8 rounded-full max-w-1/3"
+            src={user ? user.photoURL : <></>}
             alt=""
           />
         </Link>
