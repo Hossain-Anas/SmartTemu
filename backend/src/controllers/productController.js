@@ -1,17 +1,35 @@
 // Product Controller - Search Functionality
 const Product = require('../models/Product');
 
-// Search Products
 const searchProducts = async (req, res) => {
   try {
     // Extract query parameters
-    const { q, category, minPrice, maxPrice, page = 1, limit = 10 } = req.query;
+    const { q, category, minPrice, maxPrice, page = 1, limit = 10, sort } = req.query;
+
     
     // Convert to numbers
     const pageNum = parseInt(page);
     const limitNum = parseInt(limit);
     const skip = (pageNum - 1) * limitNum;
+
+    let sortOption = {_id: -1};
     
+    if (sort === 'price-asc') {
+      sortOption = {price: 1};}
+    
+    if (sort === 'price-desc') {
+      sortOption = {price: -1};
+    }
+
+    if (sort === 'name_asc') {
+      sortOption = {name: 1};
+    }
+
+    if (sort === 'name_desc') {
+      sortOption = {name: -1};
+    }
+
+
     // Build search query
     const query = {
       isActive: true
@@ -19,18 +37,20 @@ const searchProducts = async (req, res) => {
     
     // Add text search using regex
     if (q) {
+      const regex = new RegExp(q, 'i'); 
+      
       query.$or = [
-        { name: { $regex: q, $options: 'i' } },
-        { description: { $regex: q, $options: 'i' } },
-        { tags: { $regex: q, $options: 'i' } },
-        { category: { $regex: q, $options: 'i' } },
-        { brand: { $regex: q, $options: 'i' } }
+        { name: regex },
+        { description: regex },
+        { category: regex },
+        { brand: regex },
+        { tags: regex }
       ];
     }
     
     // Add category filter
     if (category) {
-      query.category = category;
+      query.category = new RegExp(`^${category}$`, "i");
     }
     
     // Add price range filters
@@ -48,7 +68,7 @@ const searchProducts = async (req, res) => {
     const products = await Product.find(query)
       .skip(skip)
       .limit(limitNum)
-      .sort({ _id: -1 });
+      .sort(sortOption);
     
     // Get total count
     const total = await Product.countDocuments(query);
