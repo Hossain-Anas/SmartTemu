@@ -1,22 +1,30 @@
 import Lottie from "lottie-react";
-
-import lottieRegister from "../../assets/lotties/Register.json";
+import LottieSignIn from "../../assets/lotties/SignIn.json";
 import { use, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext/AuthContext";
-import { NavLink } from "react-router-dom";
 
-const Register = () => {
-  const { createUser } = useContext(AuthContext);
+const SignIn = () => {
+  const { signIn, signInWithGoogle } = useContext(AuthContext);
 
-  const handleRegister = (e) => {
+  const handleSignInWithGoogle = () => {
+    signInWithGoogle()
+    .then((res) => {
+        console.log(res.user)
+    })
+    .catch((err) => {
+        console.log(err.message)
+    })
+  }
+
+  const handleSignIn = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
 
     console.log(email, password);
-    // create a user
-    createUser(email, password)
+    // sign in user
+    signIn(email, password)
       .then((res) => {
         console.log(res.user);
       })
@@ -30,15 +38,15 @@ const Register = () => {
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <Lottie
-          style={{ width: "200px" }}
-          animationData={lottieRegister}
+          //   style={{ width: "200px" }}
+          animationData={LottieSignIn}
         ></Lottie>
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
           <div className="card-body">
             <div className="text-center lg:text-left">
-              <h1 className="text-5xl font-bold">Register Now!</h1>
+              <h1 className="text-5xl font-bold">Sign In!</h1>
             </div>
-            <form onSubmit={handleRegister}>
+            <form onSubmit={handleSignIn}>
               <fieldset className="fieldset">
                 <label className="label">Email</label>
                 <input
@@ -57,8 +65,8 @@ const Register = () => {
                 <div>
                   <a className="link link-hover">Forgot password?</a>
                 </div>
-                <button className="btn btn-neutral mt-4">Register</button>
-                <NavLink to="/signIn" className="btn mt-2 bg-white text-black border-[#e5e5e5]">
+                <button className="btn btn-neutral mt-4">Sign In</button>
+                <button onClick={handleSignInWithGoogle} className="btn mt-2 bg-white text-black border-[#e5e5e5]">
                   <svg
                     aria-label="Google logo"
                     width="16"
@@ -86,8 +94,8 @@ const Register = () => {
                       ></path>
                     </g>
                   </svg>
-                  Login with Google
-                </NavLink>
+                  Sign In with Google
+                </button>
               </fieldset>
             </form>
           </div>
@@ -97,4 +105,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default SignIn;
