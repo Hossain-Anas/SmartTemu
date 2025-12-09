@@ -13,7 +13,10 @@ app.use(express.urlencoded({ extended: true }));
 connectDB();
 
 const productRoutes = require('./routes/productRoutes');
+const chatbotRoutes = require('./routes/chatbotRoutes');
+
 app.use('/api/products', productRoutes);
+app.use('/api/chatbot', chatbotRoutes);
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
