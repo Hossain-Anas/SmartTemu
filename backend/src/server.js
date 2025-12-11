@@ -14,9 +14,11 @@ connectDB();
 
 const productRoutes = require('./routes/productRoutes');
 const chatbotRoutes = require('./routes/chatbotRoutes');
+const reviewRoutes = require('./routes/reviewRoutes');
 
 app.use('/api/products', productRoutes);
 app.use('/api/chatbot', chatbotRoutes);
+app.use('/api/reviews', reviewRoutes);
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
