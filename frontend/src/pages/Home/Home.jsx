@@ -1,12 +1,26 @@
-import Lottie from "lottie-react";
-import LottieHome from "../../assets/lotties/Home.json"
+
+
+import { useEffect, useState } from "react";
+import Products from "../Products/Products";
+import Banner from "../Shared/Banner";
 
 const Home = () => {
+    const [products, setProducts] = useState([])
+
+    useEffect(() => {
+        fetch('http://localhost:5000/products')
+    .then(res => res.json())
+    .then(data => setProducts(data))
+    }, [])
+
+    // const productsPromise = 
     return (
-        <div className="text-center ">
-            <h1 className="font-bold text-3xl my-5">Welcome to SmarTemu</h1>
-            <Lottie className="mx-auto max-w-[35%]" loop={true}  animationData={LottieHome}></Lottie>
+        <div>
+           <Banner></Banner>
+
+           <Products products={products}></Products>
         </div>
+        
     );
 };
 
